@@ -16,6 +16,10 @@ body {
   -o-background-size: cover;
 }
 
+.memberbody {
+  background-color: grey;
+}
+
 .loginform {
   float: right;
   margin-top: 10%;
@@ -35,8 +39,6 @@ h3 {
   margin-top: 30px;
   font-family: 'Great Vibes', cursive;
   font-weight: 800;
-  
-
 }
 
 .signup1 {
