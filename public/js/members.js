@@ -5,3 +5,7 @@ $(document).ready(function() {
     $(".member-name").text(data.email);
   });
 });
+$.getJSON("https://api.yelp.com/v3/businesses/{FIImoTWeCfkZTCONRHzPlQ}+"), function(data){
+
+}
+// console.log(fetch('https://api.yelp.com/v3/businesses/{FIImoTWeCfkZTCONRHzPlQ}'))
