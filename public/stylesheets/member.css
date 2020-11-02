@@ -9,6 +9,10 @@ body {
     text-align: center;
 }
 
+.main {
+    margin-left: 0;
+}
+
 .welcome {
     color: #cca000;
 }
