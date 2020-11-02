@@ -26,14 +26,16 @@ $(document).on('click', '#post-button', function (event) {
 });
 
 
+// Click event to increase number with like button
+$(document).on('click', '#likes', function (event) {
 
-// on click empty form and create new post on page
+}
 
 
 // input box displays username, time stamp(date), and location of hh 
 // db posts , username, created_date, location, body
 
-// dynamically create card showing username post and location with text box information
+
 // store each post to the database
 // allow picture? if time
 // api map box if time
