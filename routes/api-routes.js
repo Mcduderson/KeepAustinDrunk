@@ -49,19 +49,28 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new post & tags
-  app.post("/api/addpost", function (req, res) {
-    const newPost = {
-      Location: req.body.Location,
-      Body: req.body.Body,
-      UserID: req.body.UserID,
-      UserName: req.body.UserName
-    };
+//   app.post("/api/addpost", function (req, res) {
+//     const newPost = {
+//       Location: req.body.Location,
+//       Body: req.body.Body,
+//       UserID: req.body.UserID,
+//       UserName: req.body.UserName
+//     };
 
-    // console.log("new post =======================")
-    // console.log(newPost)
+//   });
+// };
 
-    db.Post.create(newPost).then(postInfo => {
+//     // console.log("new post =======================")
+//     // console.log(newPost)
 
+//     db.Post.create(newPost).then(postInfo => {
+//       res.json(postInfo);
+//     });
+
+
+  app.get("/api/posts", function(req, res) {
+    db.Post.findAll({}).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
   app.get("/api/business/", function (req, res) {
@@ -78,13 +87,5 @@ module.exports = function (app) {
     yelpREST(ENDPOINT).then(({ data }) => {
       res.json(data)
     })
-  })
-  // Do something with the data
-
-}
-  // app.get("/api/business/", function(req, res){
-  //   // axios.get("https://api.yelp.com/v3/businesses/matches?"+req.params.name)
-  //   // .then(response=> {console.log(response)})
-  //   console.log("Api businesses")
-  // })
-  ;
+  }
+  )}
