@@ -60,7 +60,14 @@ module.exports = function(app) {
     // console.log(newPost)
     
     db.Post.create(newPost).then(postInfo => {
-      
+      res.json(postInfo);
     });
   });
+
+  app.get("/api/posts", function(req, res) {
+    db.Post.findAll({}).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
 };
