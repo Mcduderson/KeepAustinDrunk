@@ -5,3 +5,7 @@ $(document).ready(function() {
     $(".member-name").text(data.email);
   });
 });
+
+$(document).on('click', '.dropbtn', function() {
+  console.log("test");
+  });
