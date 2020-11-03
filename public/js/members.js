@@ -17,6 +17,7 @@ $(document).on('click', '#post-button', function (event) {
   var cardTitle = $("<h5>").addClass("card-title").text(location);
   var cardText = $("<p>").addClass("card-text").text(textPost);
   var cardButton = $("<button>").addClass("btn btn-outline-warning");
+  $('#svgLikeBttn').last().clone().appendTo(cardButton);
   postEl.append(cardEl);
   cardEl.append(cardBody);
   cardBody.append(cardTitle);
@@ -27,11 +28,25 @@ $(document).on('click', '#post-button', function (event) {
 
 
 // Click event to increase number with like button
-$(document).on('click', '#likes', function (event) {
-var likeBttn = $("#likes");
-likeBttn.text(1);
 
+
+var counter = 0;
+   
+$(document).ready(function() {
+
+    $("#likes").click(function(event){
+      
+      var likeBttn = $(event.target);
+      
+        counter++;
+
+        likeBttn.text(counter);
+    });
+    
 });
+
+
+
 
 
 // input box displays username, time stamp(date), and location of hh 
