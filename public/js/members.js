@@ -10,21 +10,24 @@ $(document).ready(function () {
   });
 });
 
-// function formData() {
-//   // send data to database
-//   // DO POST
-//   var formData = {
-//     body: $("#textArea").val(),
-//     location: $("#bar").val()
-//   }
-// }
+function formData() {
+  // send data to database
+  // DO POST
+  var formData = {
+    body: $("#textArea").val(),
+    location: $("#bar").val(),
+    userName: userName
+  }
+  console.log(formData)
+  return formData;
+}
 $(document).on('click', '#post-button', function (event) {
   // html post
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/api/addpost",
-  //   data: formData()
-  // }).then(function () {
+  $.ajax({
+    type: "POST",
+    url: "/api/addpost",
+    data: formData()
+  }).then(function () {
     var textPost = $("#textArea").val();
     var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
       var location = $("#bar").val();
@@ -52,7 +55,7 @@ $(document).on('click', '#post-button', function (event) {
     });
 
   
-// });
+});
 
 // Click event to increase number with like button
 
