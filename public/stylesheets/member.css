@@ -24,6 +24,7 @@ body {
 
 .container {
     text-align: center;
+    color:white;
 }
 
 .keepaustin {
@@ -33,4 +34,13 @@ body {
     font-size: 60px;
     color: black;
     margin-bottom: 100px;
+  }
+  .card-title{
+      color: white;
+  }
+  .search{
+      text-align: right;
+  }
+  .button{
+      color: black;
   }
