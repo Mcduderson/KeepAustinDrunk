@@ -49,11 +49,11 @@ module.exports = function(app) {
 
   // POST route for saving a new post & tags
   app.post("/api/addpost", function(req, res) {
+    console.log(req.body, 'req.body');
     const newPost = {
-      Location: req.body.Location,
-      Body: req.body.Body,
-      UserID: req.body.UserID,
-      UserName: req.body.UserName
+      location: req.body.Location,
+      body: req.body.Body,
+     userName: req.body.UserName
     };
 
     // console.log("new post =======================")
