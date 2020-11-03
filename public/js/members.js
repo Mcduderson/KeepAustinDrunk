@@ -84,3 +84,8 @@ $(document).ready(function () {
 
 // store each post to the database
 // allow picture? if time
+
+
+$(document).on('click', '.dropbtn', function() {
+console.log("test");
+});
