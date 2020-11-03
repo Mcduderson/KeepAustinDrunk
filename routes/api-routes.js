@@ -46,4 +46,21 @@ module.exports = function(app) {
       });
     }
   });
+
+  // POST route for saving a new post & tags
+  app.post("/api/addpost", function(req, res) {
+    const newPost = {
+      Location: req.body.Location,
+      Body: req.body.Body,
+      UserID: req.body.UserID,
+      UserName: req.body.UserName
+    };
+
+    // console.log("new post =======================")
+    // console.log(newPost)
+    
+    db.Post.create(newPost).then(postInfo => {
+      
+    });
+  });
 };
