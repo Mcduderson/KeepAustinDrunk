@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             notEmpty: true,
             notNull: true,
           }
-        }  
+        }
       }
     );
   
