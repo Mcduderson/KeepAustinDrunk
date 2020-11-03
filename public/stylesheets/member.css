@@ -4,10 +4,6 @@ body {
     background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
 }
 
-.navbar {
-    background: linear-gradient(to right, #352503 0%, #cca000 100%);
-    text-align: center;
-}
 
 .main {
     margin-left: 0;
@@ -15,14 +11,18 @@ body {
 
 .welcome {
     color: #cca000;
+    text-align: left;
+    margin-left: 50px;
 }
 
 .search {
     color: #cca000;
+    float: right;
 }
 
 .container {
     text-align: center;
+    color:white;
 }
 
 .keepaustin {
@@ -32,4 +32,16 @@ body {
     font-size: 60px;
     color: black;
     margin-bottom: 100px;
+   
+  }
+  .card-title{
+      color: white;
+  }
+ 
+  .button{
+      color: black;
+  }
+
+  .logout {
+    float: right;
   }
