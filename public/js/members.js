@@ -1,4 +1,3 @@
-// // var Post = require("./models/post.js");
 var userName;
 
 $(document).ready(function () {
@@ -12,7 +11,6 @@ $(document).ready(function () {
 
 function formData() {
   // send data to database
-  // DO POST
   var formData = {
     body: $("#textArea").val(),
     location: $("#bar").val(),
@@ -21,6 +19,7 @@ function formData() {
   console.log(formData)
   return formData;
 }
+// db posts , username, created_date, location, body
 $(document).on('click', '#post-button', function (event) {
   // html post
   $.ajax({
@@ -30,63 +29,48 @@ $(document).on('click', '#post-button', function (event) {
   }).then(function () {
     var textPost = $("#textArea").val();
     var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-      var location = $("#bar").val();
-      var postEl = $(".container");
-      var cardEl = $("<div>").addClass("card w-75");
-      var cardBody = $("<div>").addClass("card-body");
-      var cardTitle = $("<h5>").addClass("card-title").text(location);
-      var cardText = $("<p>").addClass("card-text").text(textPost);
-      var newPostUsername = $("<small>").text(userName + " " + formattedDate);
-      newPostUsername.css({
-        float: "right",
-        color: "white",
-        "margin-top":
-          "-10px"
-      });
-      var cardButton = $("<button>").addClass("btn btn-outline-warning");
-      $('#svgLikeBttn').last().clone().appendTo(cardButton);
-      postEl.append(cardEl);
-      cardEl.append(cardBody);
-      cardBody.append(cardTitle);
-      cardBody.append(cardText);
-      cardBody.append(newPostUsername);
-      cardBody.append(cardButton);
-      // }
+    var location = $("#bar").val();
+    var postEl = $(".container");
+    var cardEl = $("<div>").addClass("card w-75");
+    var cardBody = $("<div>").addClass("card-body");
+    var cardTitle = $("<h5>").addClass("card-title").text(location);
+    var cardText = $("<p>").addClass("card-text").text(textPost);
+    var newPostUsername = $("<small>").text(userName + " " + formattedDate);
+    newPostUsername.css({
+      float: "right",
+      color: "white",
+      "margin-top":
+        "-10px"
     });
+    var cardButton = $("<button>").addClass("btn btn-outline-warning");
+    $('#svgLikeBttn').last().clone().appendTo(cardButton);
+    postEl.append(cardEl);
+    cardEl.append(cardBody);
+    cardBody.append(cardTitle);
+    cardBody.append(cardText);
+    cardBody.append(newPostUsername);
+    cardBody.append(cardButton);
+    // }
+  });
 
-  
+
 });
 
 // Click event to increase number with like button
-
-
 var counter = 0;
 
 $(document).ready(function () {
-
   $("#likes").click(function (event) {
-
     var likeBttn = $(event.target);
-
     counter++;
-
     likeBttn.text(counter);
   });
-
 });
 
 
-
-
-
-// input box displays username, time stamp(date), and location of hh 
-// db posts , username, created_date, location, body
-
-
-// store each post to the database
 // allow picture? if time
 
 
-$(document).on('click', '.dropbtn', function() {
-console.log("test");
+$(document).on('click', '.dropbtn', function () {
+  console.log("test");
 });
