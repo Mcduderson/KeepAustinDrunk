@@ -12,7 +12,6 @@ $(document).ready(function () {
 
 
 
-
 // function formData() {
 //   // send data to database
 //   // DO POST
@@ -33,7 +32,7 @@ $(document).on('click', '#post-button', function(event){
 // html post
 // function makePost(post) {
   var textPost = $("#textArea").val();
-  var username = data.email;
+  var username = User.email;
   // // var formattedDate = new Date(post.createdAt);
   // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
   var location = $("#bar").val();
