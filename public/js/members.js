@@ -1,10 +1,11 @@
 // // var Post = require("./models/post.js");
-// var moment = require("moment");
+var userName;
 
 $(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/user_data").then(function (data) {
+    userName = data.email;
     $(".member-name").text(data.email);
   });
 });
@@ -25,17 +26,14 @@ $(document).on('click', '#post-button', function (event) {
   //   data: formData()
   // }).then(function () {
     var textPost = $("#textArea").val();
-    $.get("/api/user_data").then(function (data) {
-      var username = data.email;
-      // var formattedDate = new Date(post.createdAt);
-      // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
       var location = $("#bar").val();
       var postEl = $(".container");
       var cardEl = $("<div>").addClass("card w-75");
       var cardBody = $("<div>").addClass("card-body");
       var cardTitle = $("<h5>").addClass("card-title").text(location);
       var cardText = $("<p>").addClass("card-text").text(textPost);
-      var newPostUsername = $("<small>").text(username);
+      var newPostUsername = $("<small>").text(userName + " " + formattedDate);
       newPostUsername.css({
         float: "right",
         color: "white",
@@ -53,7 +51,7 @@ $(document).on('click', '#post-button', function (event) {
       // }
     });
 
-  });
+  
 // });
 
 // Click event to increase number with like button
