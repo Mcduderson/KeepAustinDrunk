@@ -32,7 +32,9 @@ $(document).on('click', '#post-button', function(event){
 // html post
 // function makePost(post) {
   var textPost = $("#textArea").val();
-  var username = User.email;
+  $.get("/api/user_data").then(function (data) {
+    var username = data.email;
+    console.log(username);
   // // var formattedDate = new Date(post.createdAt);
   // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
   var location = $("#bar").val();
@@ -41,7 +43,7 @@ $(document).on('click', '#post-button', function(event){
   var cardBody = $("<div>").addClass("card-body");
   var cardTitle = $("<h5>").addClass("card-title").text(location);
   var cardText = $("<p>").addClass("card-text").text(textPost);
-  var newPostUsername = $("<h5>").text(username);
+  var newPostUsername = $("<small>").text(username);
   newPostUsername.css({
     float: "right",
     color: "white",
@@ -54,11 +56,12 @@ $(document).on('click', '#post-button', function(event){
   cardEl.append(cardBody);
   cardBody.append(cardTitle);
   cardBody.append(cardText);
-  // cardBody.append(newPostUsername);
+  cardBody.append(newPostUsername);
   cardBody.append(cardButton);
 // }
 });
 
+});
 
 // Click event to increase number with like button
 
