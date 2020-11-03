@@ -1,29 +1,63 @@
-$(document).ready(function() {
+// var Post = require("./models/post.js");
+// var moment = require('moment');
+
+$(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then(function(data) {
+  $.get("/api/user_data").then(function (data) {
     $(".member-name").text(data.email);
   });
 });
 
-$(document).on('click', '#post-button', function (event) {
-  
- var textPost = $("#textArea").val();
-  // send the value to the server
- var location = $("#bar").val();
- var postEl = $(".container");
- var cardEl = $("<div>").addClass("card w-75");
+
+
+
+
+// function formData() {
+//   // send data to database
+//   // DO POST
+//   var formData = {
+//     user: data.email,
+//     body: $("#textArea").val(),
+//     location: $("#bar").val()
+//   }
+// }
+// $.ajax({
+//   type: "POST",
+//   url: "api/posts",
+//   data: JSON.stringify(formdata())
+// }).then(function () {
+//   makePost();
+// })
+$(document).on('click', '#post-button', function(event){
+// html post
+// function makePost(post) {
+  var textPost = $("#textArea").val();
+  var username = data.email;
+  // // var formattedDate = new Date(post.createdAt);
+  // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+  var location = $("#bar").val();
+  var postEl = $(".container");
+  var cardEl = $("<div>").addClass("card w-75");
   var cardBody = $("<div>").addClass("card-body");
   var cardTitle = $("<h5>").addClass("card-title").text(location);
   var cardText = $("<p>").addClass("card-text").text(textPost);
+  var newPostUsername = $("<h5>").text(username);
+  newPostUsername.css({
+    float: "right",
+    color: "white",
+    "margin-top":
+      "-10px"
+  });
   var cardButton = $("<button>").addClass("btn btn-outline-warning");
   $('#svgLikeBttn').last().clone().appendTo(cardButton);
   postEl.append(cardEl);
   cardEl.append(cardBody);
   cardBody.append(cardTitle);
   cardBody.append(cardText);
+  // cardBody.append(newPostUsername);
   cardBody.append(cardButton);
-
+// }
 });
 
 
@@ -31,18 +65,18 @@ $(document).on('click', '#post-button', function (event) {
 
 
 var counter = 0;
-   
-$(document).ready(function() {
 
-    $("#likes").click(function(event){
-      
-      var likeBttn = $(event.target);
-      
-        counter++;
+$(document).ready(function () {
 
-        likeBttn.text(counter);
-    });
-    
+  $("#likes").click(function (event) {
+
+    var likeBttn = $(event.target);
+
+    counter++;
+
+    likeBttn.text(counter);
+  });
+
 });
 
 
