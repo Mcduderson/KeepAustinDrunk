@@ -12,7 +12,9 @@ body {
 .welcome {
     color: #cca000;
     text-align: left;
+
     margin-left: 50px;
+
 }
 
 .search {
@@ -32,11 +34,12 @@ body {
     font-size: 60px;
     color: black;
     margin-bottom: 100px;
-   
+
   }
   .card-title{
       color: white;
   }
+
  
   .button{
       color: black;
@@ -44,4 +47,5 @@ body {
 
   .logout {
     float: right;
-  }
+
+ 
