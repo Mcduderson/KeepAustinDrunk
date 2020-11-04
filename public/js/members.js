@@ -8,7 +8,32 @@ $(document).ready(function () {
     userName = data.email;
     $(".member-name").text(data.email);
   });
-});
+
+$(document).on('click', '.searchbtn', function (e) {
+
+var searchInput = $("#searchInput").val()
+var zipCode = $("#zipCode").val()
+var store = "Torchys"
+$.get(`/api/businesses?q=${searchInput}&zip=${zipCode}`).then(data=> {
+  $(".card-body").empty()
+  for(var i = 0; i < data.businesses.length; i++){
+    // for(var i = 0; i < 2; i++){
+    var business = data.businesses[i]
+    var link = $("<a>").text(business.name).attr("href", business.url)
+    var image = $("<img>").attr("src", business.image_url)
+    $(".card-body").append(link)
+    $(".card-body").append(image)
+  }
+  // data.businesses.forEach(business=>{
+  //  var link = $("a").text(business.name).attr("href", business.url)
+  //  var image = $("img").attr("src", business.image_url)
+  //  $(".card-body").append(link)
+  //  $(".card-body").append(image)
+  // })
+  console.log(data)
+})
+
+})
 
 function formData() {
   // send data to database
@@ -89,4 +114,5 @@ $(document).ready(function () {
 
 $(document).on('click', '.dropbtn', function() {
 console.log("test");
+});
 });
