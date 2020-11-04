@@ -1,17 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
     const Post = sequelize.define("Post",
       {
-        Location: {
+        location: {
           type: DataTypes.STRING(100),
           validation: {
             notEmpty: true,
             notNull: true,
           }
         },
-        Body: {
+        body: {
           type: DataTypes.STRING(300),
           validation: {
             len: [313],
+            notEmpty: true,
+            notNull: true,
+          }
+        },
+        userName: {
+          type: DataTypes.STRING(300),
+          validation: {
             notEmpty: true,
             notNull: true,
           }
@@ -22,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     Post.associate = function(models) {
   
       Post.belongsTo(models.User, {
-        foreignKey: // "UserID"
+        foreignKey: 
         {
           allowNull: false
         }
