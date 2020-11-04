@@ -111,3 +111,17 @@ body {
 .placename {
   color: white;
 }
+
+.yelp-card{
+  margin-right: 0px;
+  margin-left: 90px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  text-align: center;
+  float: right;
+}
+
+.yelp-img{
+  height: 5%;
+  width: 3%;
+}
