@@ -20,9 +20,12 @@ $.get(`/api/businesses?q=${searchInput}&zip=${zipCode}`).then(data=> {
     // for(var i = 0; i < 2; i++){
     var business = data.businesses[i]
     var link = $("<a>").text(business.name).attr("href", business.url)
-    var image = $("<img>").attr("src", business.image_url)
+    var price = $("<price>").text(business.price).attr("text", business.price)
+    // var location = $("<location>").text(business.location).attr("text", business[0].location.display_address[0])
+    // var image = $("<img>").attr("src", business.image_url)
     $(".card-body").append(link)
-    $(".card-body").append(image)
+    $(".card-body").append(price)
+    // $(".card-body").append(location)
   }
   // data.businesses.forEach(business=>{
   //  var link = $("a").text(business.name).attr("href", business.url)

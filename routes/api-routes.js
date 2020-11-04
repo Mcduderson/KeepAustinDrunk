@@ -49,25 +49,6 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new post & tags
-<<<<<<< HEAD
-//   app.post("/api/addpost", function (req, res) {
-//     const newPost = {
-//       Location: req.body.Location,
-//       Body: req.body.Body,
-//       UserID: req.body.UserID,
-//       UserName: req.body.UserName
-//     };
-
-//   });
-// };
-
-//     // console.log("new post =======================")
-//     // console.log(newPost)
-
-//     db.Post.create(newPost).then(postInfo => {
-//       res.json(postInfo);
-//     });
-=======
   app.post("/api/addpost", function(req, res) {
     console.log(req.body, 'req.body');
     const newPost = {
@@ -75,9 +56,8 @@ module.exports = function (app) {
       body: req.body.Body,
      userName: req.body.UserName
     };
->>>>>>> 2cb7d345e75f135dcaa50faa6b6b432b39d4dfdb
 
-
+  })
   app.get("/api/posts", function(req, res) {
     db.Post.findAll({}).then(function(dbPost) {
       res.json(dbPost);
@@ -86,7 +66,7 @@ module.exports = function (app) {
   app.get("/api/businesses/", function (req, res) {
     let API_KEY = "I2SLuyyKWHvDg8heVcUEXkrNxuWiWE-1Qe2SEVE2bGwJ-yk4bNbUoo4_30UN0cPCLAL5csPI17_pUKwgJiqFn4EHzK2KakXxtiLb5Q6BXoM990rSIziXHBLRWEKgX3Yx"
     // REST
-    var ENDPOINT = `businesses/search?location=${req.query.zip}&locale=en_US&categories=bars&term=${req.query.q}`
+    var ENDPOINT = `businesses/search?location=${req.query.zip}&locale=en_US&categories=bars&limit=1&term=${req.query.q}`
     let yelpREST = axios.create({
       baseURL: "https://api.yelp.com/v3/",
       headers: {
@@ -98,4 +78,5 @@ module.exports = function (app) {
       res.json(data)
     })
   }
-  )}
+  )
+  }
