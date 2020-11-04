@@ -1,4 +1,5 @@
 var userName;
+var containerEl = $(".post-container");
 
 $(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
@@ -7,6 +8,23 @@ $(document).ready(function () {
     userName = data.email;
     $(".member-name").text(data.email);
   });
+  // get posts from database
+
+  // $.get("/api/posts", function(data) {
+  //   console.log("Posts", data);
+  //   posts = data;
+  // }).then 
+
+  // display posts to page
+
+  // function initializePosts() {
+  //   containerEl.empty();
+  //   var postsToAdd = [];
+  //   for (var i = 0; i < posts.length; i++) {
+  //     postsToAdd.push(createNewRow(posts[i]));
+  //   }
+  //   container.append(postsToAdd);
+  // }
 
 $(document).on('click', '.searchbtn', function (e) {
 
@@ -23,12 +41,7 @@ $.get(`/api/businesses?q=${searchInput}&zip=${zipCode}`).then(data=> {
     $(".card-body").append(link)
     $(".card-body").append(image)
   }
-  // data.businesses.forEach(business=>{
-  //  var link = $("a").text(business.name).attr("href", business.url)
-  //  var image = $("img").attr("src", business.image_url)
-  //  $(".card-body").append(link)
-  //  $(".card-body").append(image)
-  // })
+ 
   console.log(data)
 })
 
@@ -55,7 +68,7 @@ $(document).on('click', '#post-button', function (event) {
     var textPost = $("#textArea").val();
     var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
     var location = $("#bar").val();
-    var postEl = $(".container");
+    var postEl = $(".post-container");
     var cardEl = $("<div>").addClass("card w-75");
     var cardBody = $("<div>").addClass("card-body");
     var cardTitle = $("<h5>").addClass("card-title").text(location);
@@ -89,16 +102,9 @@ $(document).ready(function () {
   });
 });
 
-
 // allow picture? if time
 
-
-<<<<<<< HEAD
-$(document).on('click', '.dropbtn', function () {
-  console.log("test");
-=======
 $(document).on('click', '.dropbtn', function() {
 console.log("test");
 });
->>>>>>> e19557014350f2f7a901978d516fd861ce9a1332
 });
