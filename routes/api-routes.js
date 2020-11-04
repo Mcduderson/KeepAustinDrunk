@@ -49,6 +49,7 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new post & tags
+<<<<<<< HEAD
 //   app.post("/api/addpost", function (req, res) {
 //     const newPost = {
 //       Location: req.body.Location,
@@ -66,6 +67,15 @@ module.exports = function (app) {
 //     db.Post.create(newPost).then(postInfo => {
 //       res.json(postInfo);
 //     });
+=======
+  app.post("/api/addpost", function(req, res) {
+    console.log(req.body, 'req.body');
+    const newPost = {
+      location: req.body.Location,
+      body: req.body.Body,
+     userName: req.body.UserName
+    };
+>>>>>>> 2cb7d345e75f135dcaa50faa6b6b432b39d4dfdb
 
 
   app.get("/api/posts", function(req, res) {
