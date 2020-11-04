@@ -2,9 +2,7 @@ body {
   background-image: linear-gradient(315deg, #000000 10%, #414141 74%);
 }
 
-.container{
-  float: left;
-}
+
 
 .welcome {
   color: #cca000;
@@ -14,16 +12,14 @@ body {
 }
 
 .search {
-  color: #cca000; 
+  color: #cca000;
   
-  
+  text-align: right;
 }
 
 .container {
-  text-align: center;
   color:white;
   padding-right: 200px;
-  
 }
 
 .card-title{
@@ -45,6 +41,7 @@ body {
   text-shadow: -1px -1px 0 #cca000, 1px -1px 0 #cca000, -1px 1px 0 #cca000, 1px 1px 0 #cca000;
   font-size: 10vmin;
   font-weight: 700;
+  margin-left: 5%;
   animation: netflix_style 3.5s;
 
 }
@@ -83,8 +80,7 @@ body {
 }
 
 .carousel {
-    width: 350px;
-    max-height: 600px;
+    
     border: solid;
     border-color: darkgoldenrod;
     
@@ -104,11 +100,20 @@ body {
   color: white;
 }
 
-.logoutuser{
-  margin-top: 0px;
-  float: right;
+#logout{
+  
+float: right;
+margin-right: 5%;
 }
 
 #my-pics {
-  align-content:center;
-}
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+  max-height: 750px;
+ }
+
+ .card-body{
+   
+ }
