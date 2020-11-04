@@ -6,11 +6,6 @@ body {
   float: left;
 }
 
-.main {
-  text-align: left;
-  
-}
-
 .welcome {
   color: #cca000;
   text-align: center;
@@ -21,11 +16,13 @@ body {
 .search {
   color: #cca000; 
   
+  
 }
 
 .container {
   text-align: center;
   color:white;
+  padding-right: 200px;
   
 }
 
@@ -41,11 +38,6 @@ body {
 .logout {
   float: right;
 }
-
-#myDropdown {
-   margin-left: 125px;
-}
-
 
 .txt {
   font-family: 'Permanent Marker', cursive;
@@ -92,7 +84,7 @@ body {
 
 .carousel {
     width: 350px;
-    margin-left: 285px;
+    max-height: 600px;
     border: solid;
     border-color: darkgoldenrod;
     
@@ -110,4 +102,13 @@ body {
 
 .placename {
   color: white;
+}
+
+.logoutuser{
+  margin-top: 0px;
+  float: right;
+}
+
+#my-pics {
+  align-content:center;
 }
