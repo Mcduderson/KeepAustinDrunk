@@ -49,7 +49,9 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new post & tags
-  app.post("/api/addpost", function (req, res) {
+
+
+
     console.log(req.body, 'req.body');
     const newPost = {
       location: req.body.location,
@@ -57,6 +59,7 @@ module.exports = function (app) {
       userName: req.body.userName,
       UserId: req.user.id
     };
+
     db.Post.create(newPost).then(postInfo=>{
       res.json(postInfo);
     });
@@ -66,6 +69,7 @@ module.exports = function (app) {
         res.json(dbPost);
       });
     });
+
 
     app.get("/api/businesses/", function (req, res) {
       let API_KEY = "I2SLuyyKWHvDg8heVcUEXkrNxuWiWE-1Qe2SEVE2bGwJ-yk4bNbUoo4_30UN0cPCLAL5csPI17_pUKwgJiqFn4EHzK2KakXxtiLb5Q6BXoM990rSIziXHBLRWEKgX3Yx"
@@ -84,4 +88,6 @@ module.exports = function (app) {
     }
     )
 }
+
+
 
