@@ -52,10 +52,7 @@ $(document).on('click', '#post-button', function (event) {
     cardBody.append(cardButton);
     // }
   });
-
-
 });
-
 // Click event to increase number with like button
 var counter = 0;
 
