@@ -8,7 +8,8 @@ module.exports={
     database: process.env.DATABASE,
     host: process.env.DBHOST,
     port: 3306,
-    dialect: "mysql"
+    dialect: "mysql",
+    ykey: process.env.YKEY
   },
   test: {
     username: process.env.DBUSER,
@@ -16,7 +17,8 @@ module.exports={
     database: process.env.DATABASE,
     host: process.env.DBHOST,
     port: 3306,
-    dialect: "mysql"
+    dialect: "mysql",
+    ykey: process.env.YKEY
   },
   production: {
     username: process.env.DBUSER,
@@ -24,7 +26,8 @@ module.exports={
     database: process.env.DATABASE,
     host: process.env.DBHOST,
     port: 3306,
-    dialect: "mysql"
+    dialect: "mysql",
+    ykey: process.env.YKEY
   }
 
 }

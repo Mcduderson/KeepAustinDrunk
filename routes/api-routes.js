@@ -3,6 +3,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 var axios = require("axios");
 
+
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -49,9 +50,7 @@ module.exports = function (app) {
   });
 
   // POST route for saving a new post & tags
-
-
-
+  app.post("/api/addpost", function (req, res) {
     console.log(req.body, 'req.body');
     const newPost = {
       location: req.body.location,
@@ -78,7 +77,7 @@ module.exports = function (app) {
       let yelpREST = axios.create({
         baseURL: "https://api.yelp.com/v3/",
         headers: {
-          Authorization: `Bearer ${"I2SLuyyKWHvDg8heVcUEXkrNxuWiWE-1Qe2SEVE2bGwJ-yk4bNbUoo4_30UN0cPCLAL5csPI17_pUKwgJiqFn4EHzK2KakXxtiLb5Q6BXoM990rSIziXHBLRWEKgX3Yx"}`,
+          Authorization: `Bearer ${process.env.YKEY}`,
           "Content-type": "application/json",
         },
       })
