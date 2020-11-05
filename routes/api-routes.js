@@ -50,11 +50,15 @@ module.exports = function (app) {
 
   // POST route for saving a new post & tags
   app.post("/api/addpost", function(req, res) {
+
+
+
     console.log(req.body, 'req.body');
     const newPost = {
-      location: req.body.Location,
-      body: req.body.Body,
-     userName: req.body.UserName
+      location: req.body.location,
+      body: req.body.body,
+      userName: req.body.userName,
+      UserId: req.user.id
     };
 
   })
@@ -64,6 +68,7 @@ module.exports = function (app) {
     });
   });
   app.get("/api/businesses/", function (req, res) {
+    console.log("endpoint-reached")
     let API_KEY = "I2SLuyyKWHvDg8heVcUEXkrNxuWiWE-1Qe2SEVE2bGwJ-yk4bNbUoo4_30UN0cPCLAL5csPI17_pUKwgJiqFn4EHzK2KakXxtiLb5Q6BXoM990rSIziXHBLRWEKgX3Yx"
     // REST
     var ENDPOINT = `businesses/search?location=${req.query.zip}&locale=en_US&categories=bars&limit=1&term=${req.query.q}`
@@ -79,4 +84,34 @@ module.exports = function (app) {
     })
   }
   )
+  
+    // db.Post.create(newPost).then(postInfo=>{
+    //   res.json(postInfo);
+    // });
+    app.get("/api/posts", function (req, res) {
+      db.Post.findAll({}).then(function (dbPost) {
+        res.json(dbPost);
+      });
+    });
+
+
+    // app.get("/api/businesses/", function (req, res) {
+    //   let API_KEY = "I2SLuyyKWHvDg8heVcUEXkrNxuWiWE-1Qe2SEVE2bGwJ-yk4bNbUoo4_30UN0cPCLAL5csPI17_pUKwgJiqFn4EHzK2KakXxtiLb5Q6BXoM990rSIziXHBLRWEKgX3Yx"
+    //   // REST
+    //   var ENDPOINT = `businesses/search?location=${req.query.zip}&locale=en_US&categories=bars&term=${req.query.q}`
+    //   let yelpREST = axios.create({
+    //     baseURL: "https://api.yelp.com/v3/",
+    //     headers: {
+    //       Authorization: `Bearer ${"I2SLuyyKWHvDg8heVcUEXkrNxuWiWE-1Qe2SEVE2bGwJ-yk4bNbUoo4_30UN0cPCLAL5csPI17_pUKwgJiqFn4EHzK2KakXxtiLb5Q6BXoM990rSIziXHBLRWEKgX3Yx"}`,
+    //       "Content-type": "application/json",
+    //     },
+    //   })
+    //   yelpREST(ENDPOINT).then(({ data }) => {
+    //     res.json(data)
+    //   })
+    // }
+    // );
   }
+
+
+

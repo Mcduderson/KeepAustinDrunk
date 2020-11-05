@@ -1,5 +1,5 @@
-// // var Post = require("./models/post.js");
 var userName;
+var containerEl = $(".post-container");
 
 $(document).ready(function () {
   // This file just does a GET request to figure out which user is logged in
@@ -8,6 +8,16 @@ $(document).ready(function () {
     userName = data.email;
     $(".member-name").text(data.email);
   });
+  // get posts from database
+  $.get("/api/posts", function (data) {
+    console.log("Posts", data);
+    var posts = data;
+  }).then(function (response) {
+    // display posts to page
+    for (var i = 0; i < response.length; i++) {
+      populatePosts(response[i]);
+    }
+  })
 
   $(document).on('click', '.searchbtn', function (e) {
 
@@ -23,7 +33,7 @@ $(document).ready(function () {
         var price = $("<price>").text(business.price).attr("text", business.price)
         var rating = $("<rating>").text(business.rating).attr("text", business.rating)
         var location = $("<location>").text(business.location.address1).attr("text", business.location)
-        var image = $("<img>").attr("src", business.image_url)
+        var image = $("<img>").attr("src", business.image_url).addClass("yelp-pic")
         $(".business-name").append(link)
         $(".price-amount").append(price)
         $(".rating-star").append(rating)
@@ -48,45 +58,42 @@ $(document).ready(function () {
       //  $(".card-body").append(link)
       //  $(".card-body").append(image)
       // })
-      console.log(data)
+      //   var image = $("<img>").attr("src", business.image_url)
+      //   $(".card-body").append(link)
+      //   $(".card-body").append(image)
+      // })
+
+      //   console.log(data)
+      // })
+
     })
 
-  })
-
-  function formData() {
-    // send data to database
-    // DO POST
-    var formData = {
-      body: $("#textArea").val(),
-      location: $("#bar").val(),
-      userName: userName
+    function formData() {
+      // send data to database
+      // DO POST
+      var formData = {
+        body: $("#textArea").val(),
+        location: $("#bar").val(),
+        userName: userName
+      }
+      console.log(formData)
+      return formData;
     }
-    console.log(formData)
-    return formData;
-  }
-  $(document).on('click', '#post-button', function (event) {
-    // html post
-    $.ajax({
-      type: "POST",
-      url: "/api/addpost",
-      data: formData()
-    }).then(function () {
-      var textPost = $("#textArea").val();
-      var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-      var location = $("#bar").val();
-      var postEl = $(".container");
+    function populatePosts(data) {
+      var formattedDate = moment(data.createdAt).format("MMMM Do YYYY, h:mm:ss a");
+      var postEl = $(".post-container");
       var cardEl = $("<div>").addClass("card w-75");
       var cardBody = $("<div>").addClass("card-body");
-      var cardTitle = $("<h5>").addClass("card-title").text(location);
-      var cardText = $("<p>").addClass("card-text").text(textPost);
-      var newPostUsername = $("<small>").text(userName + " " + formattedDate);
+      var cardTitle = $("<h5>").addClass("card-title").text(data.location);
+      var cardText = $("<p>").addClass("card-text").text(data.body);
+      var newPostUsername = $("<small>").text(data.userName + " " + formattedDate);
       newPostUsername.css({
         float: "right",
         color: "white",
         "margin-top":
           "-10px"
       });
-      var cardButton = $("<button>").addClass("btn btn-outline-warning");
+      var cardButton = $("<button>").addClass("btn btn-outline-warning")/*.attr("data-id", data.id)*/;
       $('#svgLikeBttn').last().clone().appendTo(cardButton);
       postEl.append(cardEl);
       cardEl.append(cardBody);
@@ -95,42 +102,95 @@ $(document).ready(function () {
       cardBody.append(newPostUsername);
       cardBody.append(cardButton);
       // }
+    }
+    // db posts , username, created_date, location, body
+    $(document).on('click', '#post-button', function (event) {
+      // html post
+      $.ajax({
+        type: "POST",
+        url: "/api/addpost",
+        data: formData()
+      }).then(function () {
+        var textPost = $("#textArea").val();
+        var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
+        var location = $("#bar").val();
+        var postEl = $(".container");
+        var cardEl = $("<div>").addClass("card w-75");
+        var cardBody = $("<div>").addClass("card-body");
+        var cardTitle = $("<h5>").addClass("card-title").text(location);
+        var cardText = $("<p>").addClass("card-text").text(textPost);
+        var newPostUsername = $("<small>").text(userName + " " + formattedDate);
+        newPostUsername.css({
+          float: "right",
+          color: "white",
+          "margin-top":
+            "-10px"
+        });
+        var cardButton = $("<button>").addClass("btn btn-outline-warning");
+        $('#svgLikeBttn').last().clone().appendTo(cardButton);
+        postEl.append(cardEl);
+        cardEl.append(cardBody);
+        cardBody.append(cardTitle);
+        cardBody.append(cardText);
+        cardBody.append(newPostUsername);
+        cardBody.append(cardButton);
+        // }
+      });
+
+
+    });
+
+    // Click event to increase number with like button
+
+
+    var counter = 0;
+
+    $(document).ready(function () {
+
+      $("#likes").click(function (event) {
+
+        var likeBttn = $(event.target);
+
+        counter++;
+
+        likeBttn.text(counter);
+      });
+
     });
 
 
-  });
-
-  // Click event to increase number with like button
 
 
-  var counter = 0;
 
-  $(document).ready(function () {
+    // input box displays username, time stamp(date), and location of hh 
+    // db posts , username, created_date, location, body
 
-    $("#likes").click(function (event) {
 
-      var likeBttn = $(event.target);
+    // store each post to the database
+    // allow picture? if time
 
-      counter++;
 
-      likeBttn.text(counter);
+    // }
+    // ).then(function (data) {
+    //   populatePosts(data);
+    // }
+    // )
+    // Click event to increase number with like button
+    var counter = 0;
+
+    $(document).ready(function () {
+      // data attr of id and then click on like 
+      $("#likes").click(function (event) {
+        var likeBttn = $(event.target);
+        counter++;
+        likeBttn.text(counter);
+      });
     });
 
-  });
+    // allow picture? if time
 
-
-
-
-
-  // input box displays username, time stamp(date), and location of hh 
-  // db posts , username, created_date, location, body
-
-
-  // store each post to the database
-  // allow picture? if time
-
-
-  $(document).on('click', '.dropbtn', function () {
-    console.log("test");
-  });
-});
+    $(document).on('click', '.dropbtn', function () {
+      console.log("test");
+    });
+  })
+})
