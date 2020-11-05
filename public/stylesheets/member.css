@@ -119,6 +119,7 @@ body {
   margin-bottom: 60px;
   text-align: center;
   float: right;
+  /* display: none; */
 }
 
 .yelp-img{
