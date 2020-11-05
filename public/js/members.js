@@ -9,78 +9,62 @@ $(document).ready(function () {
     $(".member-name").text(data.email);
   });
   // get posts from database
+ $.get("/api/posts", function (data) {
+    console.log("Posts", data);
+    var posts = data;
+  }).then(function (response) {
+    // display posts to page
+    for (var i = 0; i < response.length; i++) {
+      populatePosts(response[i]);
+    }
+  })
 
-  // $.get("/api/posts", function(data) {
-  //   console.log("Posts", data);
-  //   posts = data;
-  // }).then 
+  $(document).on('click', '.searchbtn', function (e) {
 
-  // display posts to page
+    var searchInput = $("#searchInput").val()
+    var zipCode = $("#zipCode").val()
+    var store = "Torchys"
+    $.get(`/api/businesses?q=${searchInput}&zip=${zipCode}`).then(data => {
+      $(".card-body").empty()
+      for (var i = 0; i < data.businesses.length; i++) {
+        // for(var i = 0; i < 2; i++){
+        var business = data.businesses[i]
+        var link = $("<a>").text(business.name).attr("href", business.url)
+        var image = $("<img>").attr("src", business.image_url)
+        $(".card-body").append(link)
+        $(".card-body").append(image)
+      }
 
-  // function initializePosts() {
-  //   containerEl.empty();
-  //   var postsToAdd = [];
-  //   for (var i = 0; i < posts.length; i++) {
-  //     postsToAdd.push(createNewRow(posts[i]));
-  //   }
-  //   container.append(postsToAdd);
-  // }
+      console.log(data)
+    })
 
-$(document).on('click', '.searchbtn', function (e) {
+  })
 
-var searchInput = $("#searchInput").val()
-var zipCode = $("#zipCode").val()
-var store = "Torchys"
-$.get(`/api/businesses?q=${searchInput}&zip=${zipCode}`).then(data=> {
-  $(".card-body").empty()
-  for(var i = 0; i < data.businesses.length; i++){
-    // for(var i = 0; i < 2; i++){
-    var business = data.businesses[i]
-    var link = $("<a>").text(business.name).attr("href", business.url)
-    var image = $("<img>").attr("src", business.image_url)
-    $(".card-body").append(link)
-    $(".card-body").append(image)
+  function formData() {
+    // send data to database
+    var formData = {
+      body: $("#textArea").val(),
+      location: $("#bar").val(),
+      userName: userName
+    }
+    console.log(formData)
+    return formData;
   }
- 
-  console.log(data)
-})
-
-})
-
-function formData() {
-  // send data to database
-  var formData = {
-    body: $("#textArea").val(),
-    location: $("#bar").val(),
-    userName: userName
-  }
-  console.log(formData)
-  return formData;
-}
-// db posts , username, created_date, location, body
-$(document).on('click', '#post-button', function (event) {
-  // html post
-  $.ajax({
-    type: "POST",
-    url: "/api/addpost",
-    data: formData()
-  }).then(function () {
-    var textPost = $("#textArea").val();
-    var formattedDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-    var location = $("#bar").val();
+  function populatePosts(data) {
+    var formattedDate = moment(data.createdAt).format("MMMM Do YYYY, h:mm:ss a");
     var postEl = $(".post-container");
     var cardEl = $("<div>").addClass("card w-75");
     var cardBody = $("<div>").addClass("card-body");
-    var cardTitle = $("<h5>").addClass("card-title").text(location);
-    var cardText = $("<p>").addClass("card-text").text(textPost);
-    var newPostUsername = $("<small>").text(userName + " " + formattedDate);
+    var cardTitle = $("<h5>").addClass("card-title").text(data.location);
+    var cardText = $("<p>").addClass("card-text").text(data.body);
+    var newPostUsername = $("<small>").text(data.userName + " " + formattedDate);
     newPostUsername.css({
       float: "right",
       color: "white",
       "margin-top":
         "-10px"
     });
-    var cardButton = $("<button>").addClass("btn btn-outline-warning");
+    var cardButton = $("<button>").addClass("btn btn-outline-warning")/*.attr("data-id", data.id)*/;
     $('#svgLikeBttn').last().clone().appendTo(cardButton);
     postEl.append(cardEl);
     cardEl.append(cardBody);
@@ -89,22 +73,35 @@ $(document).on('click', '#post-button', function (event) {
     cardBody.append(newPostUsername);
     cardBody.append(cardButton);
     // }
+  }
+  // db posts , username, created_date, location, body
+  $(document).on('click', '#post-button', function (event) {
+    // html post
+    $.ajax({
+      type: "POST",
+      url: "/api/addpost",
+      data: formData()
+    }
+    ).then(function (data) {
+      populatePosts(data);
+    }
+    );
   });
-});
-// Click event to increase number with like button
-var counter = 0;
+  // Click event to increase number with like button
+  var counter = 0;
 
-$(document).ready(function () {
-  $("#likes").click(function (event) {
-    var likeBttn = $(event.target);
-    counter++;
-    likeBttn.text(counter);
+  $(document).ready(function () {
+    // data attr of id and then click on like 
+    $("#likes").click(function (event) {
+      var likeBttn = $(event.target);
+      counter++;
+      likeBttn.text(counter);
+    });
   });
-});
 
-// allow picture? if time
+  // allow picture? if time
 
-$(document).on('click', '.dropbtn', function() {
-console.log("test");
-});
+  $(document).on('click', '.dropbtn', function () {
+    console.log("test");
+  });
 });
